@@ -1,10 +1,10 @@
 /**
- *********************************************************************************************************************
+ ***********************************************************************************************************************
  * Bailey Thompson
- * Sorting (1.1)
- * 16 September 2016
+ * Sorting (1.1.1)
+ * 27 November 2016
  * Info: Sorts a random array of numbers.
- *********************************************************************************************************************
+ ***********************************************************************************************************************
  */
 //declaring package
 package sorting;
@@ -33,7 +33,8 @@ public class Sorting {
     //declaring private void method
     private void Sorting() {
         String[] buttons = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort", "Quick Sort"};
-        sortingType = JOptionPane.showOptionDialog(null, "Please pick your sorting mechanism.", "Sorting Program", JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[2]);
+        sortingType = JOptionPane.showOptionDialog(null, "Please pick your sorting mechanism.", "Sorting Program",
+                JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[2]);
         sortingType += 1;
         if (sortingType == 0) {
             System.exit(0);
@@ -79,7 +80,8 @@ public class Sorting {
     //declaring private void method
     private void UserInput() {
         do {
-            word = tempWord = JOptionPane.showInputDialog(null, "Please input the size of the array.\nSizes must be a real positive integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
+            word = tempWord = JOptionPane.showInputDialog(null, "Please input the size of the array.\nSizes must be a "
+                    + "real positive integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
             CheckEmpty();
             tempWord = tempWord.replaceAll("[ 0123456789]", "");
         } while (!"".equals(tempWord) || "".equals(word));
@@ -90,19 +92,23 @@ public class Sorting {
             randomNumbers = new int[sizeOfArray];
         }
         do {
-            word = tempWord = JOptionPane.showInputDialog(null, "Please input the minimum value.\nValue must be a real integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
+            word = tempWord = JOptionPane.showInputDialog(null, "Please input the minimum value.\nValue must be a real "
+                    + "integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
             CheckEmpty();
             tempWord = tempWord.replaceAll("[ -0123456789]", "");
         } while (!"".equals(tempWord) || "".equals(word));
         minNumber = parseInt(word);
         do {
-            word = tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
+            word = tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real "
+                    + "integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
             CheckEmpty();
             tempWord = tempWord.replaceAll("[ -0123456789]", "");
         } while (!"".equals(tempWord) || "".equals(word));
         maxNumber = parseInt(word);
         while (minNumber > maxNumber || !"".equals(tempWord) && "".equals(word)) {
-            word = tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real integer value.\nMaximum value also cannot be less than minimum value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
+            word = tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real "
+                    + "integer value.\nMaximum value also cannot be less than minimum value.", "Sorting Program",
+                    JOptionPane.PLAIN_MESSAGE);
             CheckEmpty();
             tempWord = tempWord.replaceAll("[ -0123456789]", "");
             if (!"".equals(word)) {
@@ -257,15 +263,20 @@ public class Sorting {
     //declaring private void method
     private void Output() {
         if (sizeOfArray < 100 && !"4".equals(sortingType)) {
-            JOptionPane.showConfirmDialog(null, "The Sorted Numbers Are: " + Arrays.toString(randomNumbers), "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "The Sorted Numbers Are: " + Arrays.toString(randomNumbers),
+                    "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         } else if (sizeOfArray < 100 && "4".equals(sortingType)) {
-            JOptionPane.showConfirmDialog(null, "The Sorted Numbers Are: " + Arrays.toString(randomNumbersMerge), "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "The Sorted Numbers Are: " + Arrays.toString(randomNumbersMerge),
+                    "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         } else if (hours >= 1) {
-            JOptionPane.showConfirmDialog(null, "It took you:\n" + hours + " hours\n" + minutes + " minutes\n" + seconds + " seconds", "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "It took you:\n" + hours + " hours\n" + minutes + " minutes\n"
+                    + seconds + " seconds", "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         } else if (minutes >= 1) {
-            JOptionPane.showConfirmDialog(null, "It took you:\n" + minutes + " minutes\n" + seconds + " seconds", "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "It took you:\n" + minutes + " minutes\n" + seconds + " seconds",
+                    "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         } else {
-            JOptionPane.showConfirmDialog(null, "It took you:\n" + seconds + " seconds", "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "It took you:\n" + seconds + " seconds", "Sorting Program",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         }
     }
 
