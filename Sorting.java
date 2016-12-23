@@ -1,36 +1,28 @@
 /**
  ***********************************************************************************************************************
  * Bailey Thompson
- * Sorting (1.1.1)
- * 27 November 2016
+ * Sorting (1.1.2)
+ * 22 December 2016
  * Info: Sorts a random array of numbers.
  ***********************************************************************************************************************
  */
-//declaring package
 package sorting;
 
-//declaring imports
 import static java.lang.Integer.parseInt;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
-//declaring public class
 public class Sorting {
 
-    int sizeOfArray, minNumber, maxNumber, hours, minutes, seconds, sortingType;
-    int[] randomNumbers;
-    Integer[] randomNumbersMerge;
-    String word = "", tempWord;
-    long totalTime, startTime;
+    private int minNumber, maxNumber, sortingType;
+    private int[] randomNumbers;
+    private Integer[] randomNumbersMerge;
 
-    //declaring main method
     public static void main(String[] args) {
-        //sending to method BubbleSort
         Sorting Sorting = new Sorting();
         Sorting.Sorting();
     }
 
-    //declaring private void method
     private void Sorting() {
         String[] buttons = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort", "Quick Sort"};
         sortingType = JOptionPane.showOptionDialog(null, "Please pick your sorting mechanism.", "Sorting Program",
@@ -39,20 +31,18 @@ public class Sorting {
         if (sortingType == 0) {
             System.exit(0);
         }
-        CheckEmpty();
-        UserInput();
-        RandomArrayFill();
-        //setting start time from system time
-        startTime = System.nanoTime();
+        int sizeOfArray = UserInput();
+        RandomArrayFill(sizeOfArray);
+        long startTime = System.nanoTime();
         switch (sortingType) {
             case 1:
-                BubbleSort();
+                BubbleSort(sizeOfArray);
                 break;
             case 2:
-                SelectionSort();
+                SelectionSort(sizeOfArray);
                 break;
             case 3:
-                InsertionSort();
+                InsertionSort(sizeOfArray);
                 break;
             case 4:
                 mergeSort(randomNumbersMerge);
@@ -64,61 +54,60 @@ public class Sorting {
                 quickSort(randomNumbers, lowQuickSort, highQuickSort);
                 break;
         }
-        //setting total runtime
-        totalTime = System.nanoTime() - startTime;
-        //setting seconds from nanoseconds
+        long totalTime = System.nanoTime() - startTime;
         totalTime /= 1000000000;
-        //calculating hours
-        hours = (int) Math.floor(totalTime / 3600);
-        //calculating minutes
-        minutes = (int) Math.floor((totalTime - hours * 3600) / 60);
-        //calculating seconds
-        seconds = (int) Math.floor(totalTime - minutes * 60);
-        Output();
+        int hours = (int) Math.floor(totalTime / 3600);
+        int minutes = (int) Math.floor((totalTime - hours * 3600) / 60);
+        int seconds = (int) Math.floor(totalTime - minutes * 60);
+        Output(sizeOfArray, hours, minutes, seconds);
     }
 
-    //declaring private void method
-    private void UserInput() {
+    private int UserInput() {
+        String word, tempWord;
         do {
-            word = tempWord = JOptionPane.showInputDialog(null, "Please input the size of the array.\nSizes must be a "
+            tempWord = JOptionPane.showInputDialog(null, "Please input the size of the array.\nSizes must be a "
                     + "real positive integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
-            CheckEmpty();
+            word = tempWord;
+            CheckEmpty(word);
             tempWord = tempWord.replaceAll("[ 0123456789]", "");
         } while (!"".equals(tempWord) || "".equals(word));
-        sizeOfArray = parseInt(word);
+        int sizeOfArray = parseInt(word);
         if ("4".equals(sortingType)) {
             randomNumbersMerge = new Integer[sizeOfArray];
         } else {
             randomNumbers = new int[sizeOfArray];
         }
         do {
-            word = tempWord = JOptionPane.showInputDialog(null, "Please input the minimum value.\nValue must be a real "
+            tempWord = JOptionPane.showInputDialog(null, "Please input the minimum value.\nValue must be a real "
                     + "integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
-            CheckEmpty();
+            word = tempWord;
+            CheckEmpty(word);
             tempWord = tempWord.replaceAll("[ -0123456789]", "");
         } while (!"".equals(tempWord) || "".equals(word));
         minNumber = parseInt(word);
         do {
-            word = tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real "
+            tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real "
                     + "integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
-            CheckEmpty();
+            word = tempWord;
+            CheckEmpty(word);
             tempWord = tempWord.replaceAll("[ -0123456789]", "");
         } while (!"".equals(tempWord) || "".equals(word));
         maxNumber = parseInt(word);
         while (minNumber > maxNumber || !"".equals(tempWord) && "".equals(word)) {
-            word = tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real "
+            tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real "
                     + "integer value.\nMaximum value also cannot be less than minimum value.", "Sorting Program",
                     JOptionPane.PLAIN_MESSAGE);
-            CheckEmpty();
+            word = tempWord;
+            CheckEmpty(word);
             tempWord = tempWord.replaceAll("[ -0123456789]", "");
             if (!"".equals(word)) {
                 maxNumber = parseInt(word);
             }
         }
+        return sizeOfArray;
     }
 
-    //declaring private void method
-    private void RandomArrayFill() {
+    private void RandomArrayFill(int sizeOfArray) {
         for (int counterFill = 0; counterFill < sizeOfArray; counterFill++) {
             if ("4".equals(sortingType)) {
                 randomNumbersMerge[counterFill] = ((int) (Math.random() * (maxNumber - minNumber + 1))) + minNumber;
@@ -128,8 +117,7 @@ public class Sorting {
         }
     }
 
-    //declaring private void method
-    private void BubbleSort() {
+    private void BubbleSort(int sizeOfArray) {
         int temp;
         for (int i = 0; i < sizeOfArray; i++) {
             for (int j = 1; j < (sizeOfArray - i); j++) {
@@ -142,8 +130,7 @@ public class Sorting {
         }
     }
 
-    //declaring private void method
-    private void SelectionSort() {
+    private void SelectionSort(int sizeOfArray) {
         int temp;
         for (int counter1 = 0; counter1 < sizeOfArray - 1; counter1++) {
             int minIndex = counter1;
@@ -160,8 +147,7 @@ public class Sorting {
         }
     }
 
-    //declaring private void method
-    private void InsertionSort() {
+    private void InsertionSort(int sizeOfArray) {
         int counter1, counter2, newValue;
         for (counter1 = 1; counter1 < sizeOfArray; counter1++) {
             newValue = randomNumbers[counter1];
@@ -201,17 +187,17 @@ public class Sorting {
             }
         }
 
-        while (left <= leftEnd) // Copy rest of first half
+        while (left <= leftEnd) //copy rest of first half
         {
             tmp[k++] = randomNumbersMerge[left++];
         }
 
-        while (right <= rightEnd) // Copy rest of right half
+        while (right <= rightEnd) //copy rest of right half
         {
             tmp[k++] = randomNumbersMerge[right++];
         }
 
-        // Copy tmp back
+        //copy tmp back
         for (int i = 0; i < num; i++, rightEnd--) {
             randomNumbersMerge[rightEnd] = tmp[rightEnd];
         }
@@ -221,16 +207,15 @@ public class Sorting {
         if (arr == null || arr.length == 0) {
             return;
         }
-
         if (lowQuickSort >= highQuickSort) {
             return;
         }
 
-        // pick the pivot
+        //pick the pivot
         int middle = lowQuickSort + (highQuickSort - lowQuickSort) / 2;
         int pivot = arr[middle];
 
-        // make left < pivot and right > pivot
+        //make left < pivot and right > pivot
         int i = lowQuickSort, j = highQuickSort;
         while (i <= j) {
             while (arr[i] < pivot) {
@@ -250,18 +235,16 @@ public class Sorting {
             }
         }
 
-        // recursively sort two sub parts
+        //recursively sort two sub parts
         if (lowQuickSort < j) {
             quickSort(arr, lowQuickSort, j);
         }
-
         if (highQuickSort > i) {
             quickSort(arr, i, highQuickSort);
         }
     }
 
-    //declaring private void method
-    private void Output() {
+    private void Output(int sizeOfArray, int hours, int minutes, int seconds) {
         if (sizeOfArray < 100 && !"4".equals(sortingType)) {
             JOptionPane.showConfirmDialog(null, "The Sorted Numbers Are: " + Arrays.toString(randomNumbers),
                     "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -280,8 +263,7 @@ public class Sorting {
         }
     }
 
-    //declaring private void method
-    private void CheckEmpty() {
+    private void CheckEmpty(String word) {
         if (word == null) {
             System.exit(0);
         }
