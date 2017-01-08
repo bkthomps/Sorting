@@ -1,2 +1,2 @@
 # Sorting
-This was made in Java. It requires Java SE to play.
+Presents to the user 5 sorting algorithms. Used to compare efficiency of the 5 different algorithms.
