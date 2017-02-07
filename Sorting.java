@@ -1,29 +1,29 @@
-/**
+/*
  * Bailey Thompson
- * Sorting (1.1.3)
- * 8 January 2017
- * Info: Sorts a random array of numbers.
+ * Sorting (1.2.0)
+ * 6 February 2017
+ * Sorts a random array of numbers.
  */
-package sorting;
 
 import static java.lang.Integer.parseInt;
+
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
-public class Sorting {
+class Sorting {
 
     private int minNumber, maxNumber, sortingType;
     private int[] randomNumbers;
     private Integer[] randomNumbersMerge;
 
     public static void main(String[] args) {
-        Sorting Sorting = new Sorting();
-        Sorting.Sorting();
+        Sorting sort = new Sorting();
+        sort.Sort();
     }
 
-    private void Sorting() {
+    private void Sort() {
         String[] buttons = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort", "Quick Sort"};
-        sortingType = JOptionPane.showOptionDialog(null, "Please pick your sorting mechanism.", "Sorting Program",
+        sortingType = JOptionPane.showOptionDialog(null, "Please pick your sorting mechanism.", "Sort Program",
                 JOptionPane.PLAIN_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[2]);
         sortingType += 1;
         if (sortingType == 0) {
@@ -46,8 +46,8 @@ public class Sorting {
                 mergeSort(randomNumbersMerge);
                 break;
             case 5:
-                int lowQuickSort = 0;
-                int highQuickSort = randomNumbers.length - 1;
+                final int lowQuickSort = 0;
+                final int highQuickSort = randomNumbers.length - 1;
 
                 quickSort(randomNumbers, lowQuickSort, highQuickSort);
                 break;
@@ -64,7 +64,7 @@ public class Sorting {
         String word, tempWord;
         do {
             tempWord = JOptionPane.showInputDialog(null, "Please input the size of the array.\nSizes must be a "
-                    + "real positive integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
+                    + "real positive integer value.", "Sort Program", JOptionPane.PLAIN_MESSAGE);
             word = tempWord;
             CheckEmpty(word);
             tempWord = tempWord.replaceAll("[ 0123456789]", "");
@@ -77,7 +77,7 @@ public class Sorting {
         }
         do {
             tempWord = JOptionPane.showInputDialog(null, "Please input the minimum value.\nValue must be a real "
-                    + "integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
+                    + "integer value.", "Sort Program", JOptionPane.PLAIN_MESSAGE);
             word = tempWord;
             CheckEmpty(word);
             tempWord = tempWord.replaceAll("[ -0123456789]", "");
@@ -85,7 +85,7 @@ public class Sorting {
         minNumber = parseInt(word);
         do {
             tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real "
-                    + "integer value.", "Sorting Program", JOptionPane.PLAIN_MESSAGE);
+                    + "integer value.", "Sort Program", JOptionPane.PLAIN_MESSAGE);
             word = tempWord;
             CheckEmpty(word);
             tempWord = tempWord.replaceAll("[ -0123456789]", "");
@@ -93,7 +93,7 @@ public class Sorting {
         maxNumber = parseInt(word);
         while (minNumber > maxNumber || !"".equals(tempWord) && "".equals(word)) {
             tempWord = JOptionPane.showInputDialog(null, "Please input the maximum value.\nValue must be a real "
-                    + "integer value.\nMaximum value also cannot be less than minimum value.", "Sorting Program",
+                            + "integer value.\nMaximum value also cannot be less than minimum value.", "Sort Program",
                     JOptionPane.PLAIN_MESSAGE);
             word = tempWord;
             CheckEmpty(word);
@@ -158,7 +158,7 @@ public class Sorting {
         }
     }
 
-    public static void mergeSort(Comparable[] randomNumbersMerge) {
+    private static void mergeSort(Comparable[] randomNumbersMerge) {
         Comparable[] tmp = new Comparable[randomNumbersMerge.length];
         mergeSort(randomNumbersMerge, tmp, 0, randomNumbersMerge.length - 1);
     }
@@ -245,18 +245,18 @@ public class Sorting {
     private void Output(int sizeOfArray, int hours, int minutes, int seconds) {
         if (sizeOfArray < 100 && !"4".equals(sortingType)) {
             JOptionPane.showConfirmDialog(null, "The Sorted Numbers Are: " + Arrays.toString(randomNumbers),
-                    "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    "Sort Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         } else if (sizeOfArray < 100 && "4".equals(sortingType)) {
             JOptionPane.showConfirmDialog(null, "The Sorted Numbers Are: " + Arrays.toString(randomNumbersMerge),
-                    "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    "Sort Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         } else if (hours >= 1) {
             JOptionPane.showConfirmDialog(null, "It took you:\n" + hours + " hours\n" + minutes + " minutes\n"
-                    + seconds + " seconds", "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    + seconds + " seconds", "Sort Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         } else if (minutes >= 1) {
             JOptionPane.showConfirmDialog(null, "It took you:\n" + minutes + " minutes\n" + seconds + " seconds",
-                    "Sorting Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                    "Sort Program", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         } else {
-            JOptionPane.showConfirmDialog(null, "It took you:\n" + seconds + " seconds", "Sorting Program",
+            JOptionPane.showConfirmDialog(null, "It took you:\n" + seconds + " seconds", "Sort Program",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         }
     }
