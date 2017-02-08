@@ -10,7 +10,7 @@ import static java.lang.Integer.parseInt;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
-public class Sorting {
+class Sorting {
 
     private int minNumber, maxNumber, sortingType;
     private int[] randomNumbers;
